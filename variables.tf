@@ -7,12 +7,12 @@ variable "region" {
 }
 
 variable "availability_zones" {
-    type = "map"
-    default = {
-        "1" = "us-west-2c"
-        "2" = "us-west-2d"
-        "3" = "us-west-2e"
-    }
+    type = "list"
+    default = [
+        "us-west-2c",
+        "us-west-2d",
+        "us-west-2a",
+    ]
 }
 
 variable "cidr_blocks" {
