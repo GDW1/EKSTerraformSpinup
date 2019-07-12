@@ -18,7 +18,7 @@ The following tools were used to create these tools
 * Kubectl
 * Docker desktop
 
-## How to use
+## How provision the cluster
 
 Follow the instructions to provision the cluster
 
