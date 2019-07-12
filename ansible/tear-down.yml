@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  tasks:
+    - pip:
+        name: openshift
+
+    - name: create the backend namespace
+      k8s:
+        state: absent
+        src: ./namespaces/backend-namespaces.yaml
+      
+    - name: Launch the backend deployment
+      k8s:
+        state: absent
+        src: ./backend-service/backend-deployment.yaml
+    
+    - name: create backend service
+      k8s:
+        state: absent
+        src: ./backend-service/backend-service.yaml
+
+    - name: create frontend namespace
+      k8s:
+        state: absent
+        src: ./namespaces/frontend-namespaces.yaml
+
+    - name: create frontend deployment
+      k8s:
+        state: absent
+        src: ./frontend/frontend-deployment.yaml
+
+    - name: create frontend service
+      k8s:
+        state: absent
+        src: ./frontend/frontend-service.yml
+
+    - name: configure endpoint
+      k8s:
+        state: absent
+        src: ./endpoints/backend-service-endpoint.yaml

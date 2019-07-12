@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: backend
+  name: hello
+spec:
+  selector:
+    matchLabels:
+      app: hello
+      track: stable
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hello
+        track: stable
+    spec:
+      containers:
+        - name: hello
+          image: "docker.io/guydw/counter:latest"
+          ports:
+            - name: http
+              containerPort: 80

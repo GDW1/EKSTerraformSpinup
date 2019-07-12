@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: frontend
+spec:
+  selector:
+    matchLabels:
+      app: hello
+      track: stable
+  replicas: 1
+  template:
+    metadata:
+      namespace: frontend
+      labels:
+        app: hello
+        track: stable
+    spec:
+      containers:
+      - name: nginx
+        image: "docker.io/guydw/pinger:latest"
+        command: ["/go/bin/myapp"]

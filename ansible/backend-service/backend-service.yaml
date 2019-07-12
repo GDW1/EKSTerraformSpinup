@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: backend
+  name: hello
+  labels:
+    name: hello
+spec:
+  selector:
+    app: hello
+  ports:
+  - name: hello
+    protocol: TCP
+    port: 80
+    targetPort: 80
