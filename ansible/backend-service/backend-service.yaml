@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  namespace: backend
+  namespace: default
   name: hello
   labels:
     name: hello

@@ -1,22 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: frontend
+  name: apitest
 spec:
   selector:
     matchLabels:
-      app: hello
-      track: stable
-  replicas: 1
+      app: apitest
   template:
     metadata:
-      namespace: frontend
       labels:
-        app: hello
-        track: stable
+        app: apitest
     spec:
       containers:
-      - name: nginx
-        image: "docker.io/guydw/pinger:latest"
-        command: ["/go/bin/myapp"]
+      - name: apitest
+        image: docker.io/guydw/kubeapitest:latest
+        ports:
+        - containerPort: 80

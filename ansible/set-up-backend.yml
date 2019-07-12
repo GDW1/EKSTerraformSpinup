@@ -3,11 +3,6 @@
   tasks:
     - pip:
         name: openshift
-
-    - name: create the backend namespace
-      k8s:
-        state: present
-        src: ./namespaces/backend-namespaces.yaml
       
     - name: Launch the backend deployment
       k8s:
@@ -19,3 +14,12 @@
         state: present
         src: ./backend-service/backend-service.yaml
 
+    - name: create frontend deployment
+      k8s:
+        state: present
+        src: ./frontend/frontend-deployment.yaml
+
+    - name: create frontend service
+      k8s:
+        state: present
+        src: ./frontend/frontend-service.yml

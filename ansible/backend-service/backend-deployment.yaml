@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: backend
+  namespace: default
   name: hello
 spec:
   selector:
