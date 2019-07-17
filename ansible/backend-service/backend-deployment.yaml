@@ -2,22 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: default
-  name: hello
+  name: counter
 spec:
   selector:
     matchLabels:
-      app: hello
+      app: counter
       track: stable
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
-        app: hello
+        app: counter
         track: stable
     spec:
       containers:
-        - name: hello
-          image: "docker.io/guydw/counter:latest"
+        - name: counter
+          serviceAccountName: deafult
+          image: "docker.io/guydw/responser:latest"
           ports:
             - name: http
               containerPort: 80

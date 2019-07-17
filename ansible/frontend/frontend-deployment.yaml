@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: apitest
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -13,6 +14,6 @@ spec:
     spec:
       containers:
       - name: apitest
-        image: docker.io/guydw/kubeapitest:latest
+        image: docker.io/guydw/kubeapitest:v16
         ports:
         - containerPort: 80

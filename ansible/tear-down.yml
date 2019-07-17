@@ -4,6 +4,11 @@
     - pip:
         name: openshift
 
+    - name: create roles
+      k8s:
+        state: absent
+        src: ./cluster-role-binding.yaml
+
     - name: create the backend namespace
       k8s:
         state: absent
@@ -33,8 +38,3 @@
       k8s:
         state: absent
         src: ./frontend/frontend-service.yml
-
-    - name: configure endpoint
-      k8s:
-        state: absent
-        src: ./endpoints/backend-service-endpoint.yaml

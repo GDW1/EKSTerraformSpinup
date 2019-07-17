@@ -13,13 +13,3 @@
       k8s:
         state: present
         src: ./backend-service/backend-service.yaml
-
-    - name: create frontend deployment
-      k8s:
-        state: present
-        src: ./frontend/frontend-deployment.yaml
-
-    - name: create frontend service
-      k8s:
-        state: present
-        src: ./frontend/frontend-service.yml

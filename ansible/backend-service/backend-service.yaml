@@ -2,14 +2,15 @@ kind: Service
 apiVersion: v1
 metadata:
   namespace: default
-  name: hello
+  name: counter
   labels:
-    name: hello
+    name: counter
 spec:
   selector:
-    app: hello
+    app: counter
+  type: ClusterIP
   ports:
-  - name: hello
+  - name: counter
     protocol: TCP
     port: 80
     targetPort: 80

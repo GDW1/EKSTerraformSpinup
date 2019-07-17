@@ -15,9 +15,4 @@
       k8s:
         state: present
         src: ./frontend/frontend-service.yml
-
-    - name: configure endpoint
-      k8s:
-        state: present
-        src: ./endpoints/backend-service-endpoint.yaml
       

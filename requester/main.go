@@ -1,14 +1,15 @@
 package main
 
-import(
-    "context"
-    "fmt"
-	"net/http"
-	"github.com/ericchiang/k8s"
+import (
+	"context"
 	"encoding/json"
-	corev1 "github.com/ericchiang/k8s/apis/core/v1"
-	"time"
+	"fmt"
 	"io/ioutil"
+	"net/http"
+	"time"
+
+	"github.com/ericchiang/k8s"
+	corev1 "github.com/ericchiang/k8s/apis/core/v1"
 )
 
 type Endpoint struct {
@@ -69,34 +70,33 @@ type Gen struct {
 	} `json:"subsets"`
 }
 
-func main(){
-	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		client, err := k8s.NewInClusterClient()
 		if err != nil {
-			fmt.Println(err)
+			fmt.Fprintf(w, "STEP1: "+string(err.Error()))
 		}
 		var endpoints corev1.Endpoints
 		err = client.Get(context.Background(), "default", "counter", &endpoints)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Fprintf(w, "STEP2: "+string(err.Error()))
 		}
 		out, err := json.Marshal(endpoints)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Fprintf(w, "STEP3: "+string(err.Error()))
 		}
 		var gen Gen
 		json.Unmarshal(out, &gen)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Fprintf(w, "STEP4: "+string(err.Error()))
 		}
-		//defer fmt.Println(body)
-		//fmt.Fprintf(w, string(gen.Subsets[0].Addresses[0].IP))
 		resp, err := http.Get("http://" + gen.Subsets[0].Addresses[0].IP)
 		body, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			panic(err)
 		}
 		fmt.Fprintf(w, string(body))
+		return
 	})
 
 	http.ListenAndServe(":80", nil)

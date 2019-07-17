@@ -3,7 +3,12 @@
   tasks:
     - pip:
         name: openshift
-      
+        
+    - name: create roles
+      k8s:
+        state: present
+        src: ./cluster-role-binding.yaml
+
     - name: Launch the backend deployment
       k8s:
         state: present
@@ -23,24 +28,3 @@
       k8s:
         state: present
         src: ./frontend/frontend-service.yml
-        
-    - name: create frontend namespace
-      k8s:
-        state: present
-        src: ./namespaces/frontend-namespaces.yaml
-
-    - name: create frontend deployment
-      k8s:
-        state: present
-        src: ./frontend/frontend-deployment.yaml
-
-    - name: create frontend service
-      k8s:
-        state: present
-        src: ./frontend/frontend-service.yml
-
-    - name: configure endpoint
-      k8s:
-        state: present
-        src: ./endpoints/backend-service-endpoint.yaml
-      
