@@ -33,6 +33,14 @@ From the preceding list you'll need to manually install the:
 * Golang: https://golang.org/dl/
 * K8s go plugin: `go get https://github.com/ericchiang/k8s`
 
+## simple setup
+
+if you want the simplest possible setup, install the nessessary tools above and change the execute this file appropriatly to point to the right destinations for the execturables in the file.
+
+Then log into the AWS CLI and execute the `execute-this` executable and after around 13 minutes the cluster should be provisioned and configured to run the applications.
+
+Alternatively use the following instructions to do the steps take in the executable file automatically
+
 
 ## How provision the cluster
 
@@ -60,14 +68,14 @@ for a request on port 80 and returns a simple message. The Other application is 
 
 ## (OPTIONAL) Building the Backend Manually
 
-For the backend, if you don't want to the backend from the docker repo `guydw/counter:latest`, you can build it manually
+For the backend, if you don't want to the backend from the docker repo `guydw/responser:latest`, you can build it manually
 
 If you choose to do it manually go into the folder called responder and run the command `docker build -t {your-docker-username}/{the name of the image} .` (make sure that docker desktop is running).
 Then run `docker push {your-docker-username}/{the name of the image}`
 
 ## (OPTIONAL) Building the frontend Manually 
 
-For the Frontend, if you don't want to the backend from the docker repo `guydw/apitest:latest`, you can build it manually
+For the Frontend, if you don't want to the backend from the docker repo `guydw/apitest:v16`, you can build it manually
 
 If you choose to do it manually go into the folder called requester and run the command `docker build -t {your-docker-username}/{the name of the image} .` (make sure that docker desktop is running).
 Then run `docker push {your-docker-username}/{the name of the image}`
