@@ -1,0 +1,25 @@
+#!/bin/bash 
+
+cd /Users/tester/Documents/GitHub/EKSTerraformSpinup/terraformEKS
+
+/Applications/Terraform/terraform init
+
+/Applications/Terraform/terraform plan
+
+/Applications/Terraform/terraform apply -auto-approve
+
+cd /Users/tester/Documents/GitHub/EKSTerraformSpinup/terraformEKS/config-files
+
+mv config ~/.kube/config
+
+kubectl apply -f nodes.yaml
+
+cd ../
+
+cd ../
+
+cd /Users/tester/Documents/GitHub/EKSTerraformSpinup/ansible
+
+ansible-playbook full-set-up.yaml
+
+kubectl get svc

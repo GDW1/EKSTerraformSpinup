@@ -1,0 +1,15 @@
+#!/bin/bash 
+
+
+cd /Users/tester/Documents/GitHub/EKSTerraformSpinup/ansible
+
+ansible-playbook tear-down.yml
+
+cd /Users/tester/Documents/GitHub/EKSTerraformSpinup/terraformEKS
+
+/Applications/Terraform/terraform init
+
+/Applications/Terraform/terraform plan -destroy
+
+/Applications/Terraform/terraform destroy -auto-approve
+
